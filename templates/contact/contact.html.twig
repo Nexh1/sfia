@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+{% block title %}Nous contacter - SFIA{% endblock %}
+{% block meta %}Nous contacter{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-sm-9 col-md-7 mx-auto ">
+            <div class="card card-signin my-3 p-4">
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-5 text-primary">Nous contacter</h1>
+                    {{form_start(form)}}
+
+                    {{form_row(form.subject, {
+                    'label': 'Votre sujet',
+                    'attr' : {
+                    'placeholder': 'Sujet ...'
+                    }
+                    })}}
+                    {{form_row(form.name, {
+                    'label': 'Votre nom',
+                    'attr' : {
+                    'placeholder': 'Nom ...'
+                    }
+                    })}}
+                    {{form_row(form.email, {
+                    'label': 'Votre email',
+                    'attr': {
+                    'placeholder': 'Email ...'
+                    }
+                    })}}
+                    {{form_row(form.message, {
+                    'label': 'Votre message',
+                    'attr' : {
+                    'placeholder': 'Message ...',
+                    'rows': "5"
+                    }
+                    })}}
+                    <div class="g-recaptcha my-5" data-sitekey="6LcAFn4UAAAAACebIYCuLB-qNqVZC0Vbelnm9ddd"></div>
+                    {{form_row(form.submit, {
+                    'label': 'Envoyer',
+                    'attr' : {
+                    'class': 'btn btn-success'
+                    }
+                    })}}
+                    {{form_end(form)}}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+{{parent()}}
+<script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock %}

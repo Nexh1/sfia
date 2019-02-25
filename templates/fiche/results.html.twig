@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+{% block title %}Résultats de recherche - SFIA{% endblock %}
+{% block meta %}Résultats de recherche{% endblock %}
+{% block main %}
+<div class="container">
+    {% if (pagination is defined) and (emptySearch == false) %}
+    <h1 class="text-primary text-center mt-5 pb-4 border-bottom border-secondary">Résultats pour la recherche :
+        <p class="mt-3">"{{app.request.query.get('search')}}"</p>
+    </h1>
+    <p class="text-center mt-3">{{pagination.nbResults}} résultats</p>
+    <div class="container mt-5">
+        {% for result in pagination.data %}
+        <div class="container d-flex flex-column">
+            <h5><a href="{{path('fiche' , {'id': result.id}) }}">{{result.raisonSociale}}</a></h5>
+            <p class="">{{result.adresse}} - {{result.codePostal}} - {{result.ville}}</p>
+            <p class="text-lowercase">{{result.savoirFaire}}</p>
+        </div><br>
+        {% endfor %}
+    </div>
+    {{ pagination.display() }}
+    {% endif %}
+
+    {% if savoirs is defined %}
+    <h1 class="text-primary text-center mt-5 pb-4 border-bottom border-secondary">Résultats pour le savoir faire : <br>{{app.request.query.get('savoirs')}}</h1>
+    <div class="container mt-5">
+        {% for savoir in savoirs %}
+        <div class="container d-flex flex-column">
+            <h5><a class="font-weight-bold" href="{{path('fiche' , {'id': savoir.id}) }}">{{savoir.raisonSociale}}</a></h5>
+            <p class="">{{savoir.adresse}} - {{savoir.codePostal}} - {{savoir.ville}}</p>
+            <p class="text-lowercase">{{savoir.savoirFaire}}</p>
+        </div><br>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if secteurs is defined %}
+    <h1 class="text-primary text-center mt-5 pb-4 border-bottom border-secondary">Résultats pour le secteur d'activité
+        : <br>{{app.request.query.get('secteurs')}}</h1>
+    <div class="container mt-5">
+        {% for secteur in secteurs %}
+        <div class="container d-flex flex-column">
+            <h5><a href="{{path('fiche' , {'id': secteur.id}) }}">{{secteur.raisonSociale}}</a></h5>
+            <p class="">{{secteur.adresse}} - {{secteur.codePostal}} - {{secteur.ville}}</p>
+            <p class="text-lowercase">{{secteur.secteursActivite}}</p>
+        </div><br>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if (emptySearch is defined) and (emptySearch == true) %}
+    <h2 class="p-3 mt-5">Aucun résultats pour cette recherche, veuillez réessayer avec d'autres critères</h2>
+    <p class="text-center mt-5"><a href="{{path('home')}}" class="btn btn-primary">Refaire une recherche</a></p>
+    {% endif %}
+</div>
+{% endblock %}

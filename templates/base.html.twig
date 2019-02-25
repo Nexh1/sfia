@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="gcEGCWDn-f_NESOaVcfD-FhHiLiuO55p0EQqisoxK6w" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Le savoir faire industriel ardennais{% endblock %}</title>
+    <meta name="description" content="{% block meta %}le savoir industriel ardennais {% endblock %}">
+    {% block stylesheets %}
+    <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}">
+    <link rel="stylesheet" href="{{asset('build/css/styles.css')}}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
+        crossorigin="anonymous">
+    {% endblock %}
+</head>
+
+<body id="{{ app.request.attributes.get('_route') }}">
+    {% block body %}
+
+    {% block navbar %}
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary sticky-top" id="navbar">
+        <button class="navbar-toggler position-relative" type="button" data-toggle="collapse" data-target="#mobile_nav"
+            aria-controls="mobile_nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mobile_nav">
+            <ul class="navbar-nav mx-auto pt-4 pt-md-0">
+                <li class="nav-item mr-4 ml-4 {% if app.request.attributes.get('_route') == 'home' %}active{% endif %}">
+                    <a class="nav-link" href="{{ path('home') }}">Accueil</a>
+                </li>
+                <li class="nav-item mr-4 ml-4 {% if app.request.attributes.get('_route') == 'espace_entreprises' %}active{% endif %}">
+                    <a class="nav-link" href="{{path('espace_entreprises')}}">Espace entreprises</a>
+                </li>
+                <li class="nav-item mr-4 ml-4 {% if app.request.attributes.get('_route') == 'actualites' %}active{% endif %}">
+                    <a class="nav-link" href="{{path('actualites')}}">Actualités</a>
+                </li>
+                <li class="nav-item mr-4 ml-4  {% if app.request.attributes.get('_route') == 'contact' %}active{% endif %}">
+                    <a class="nav-link" href="{{ path('contact') }}">Contact</a>
+                </li>
+
+                {% if not app.user %}
+                <li class="nav-item mr-4 ml-4">
+                    <a class="nav-link" href="{{ path('security_login') }}">Connexion</a>
+                </li>
+                {% endif %}
+
+                {% if app.user %}
+                <li class="nav-item mr-4 ml-4">
+                    <a class="nav-link" href="{{ path('security_logout') }}">Deconnexion</a>
+                </li>
+                {% endif %}
+
+                {% if is_granted(['ROLE_ADMIN','ROLE_REDACTEUR']) %}
+                <li class="nav-item mr-4 ml-4 {% if app.request.attributes.get('_route') == 'admin_home' %}active{% endif %}">
+                    <a class="nav-link" href="{{ path('admin_home') }}">Administration</a>
+                </li>
+                {% endif %}
+
+            </ul>
+        </div>
+    </nav>
+    {% endblock %}
+
+    <div class="p-0 m-0">
+        <main>
+            {% if app.request.attributes.get('_route') != 'home' %}
+            {% block flash %}
+            <div class="container mx-auto">
+                <div class="mx-auto">
+                    {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{ label }}">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endblock %}
+            {% endif %}
+            {% block main %}
+
+            {% endblock %}
+        </main>
+    </div>
+
+
+    {% block footer %}
+    <div class="container-fluid container_footer_logo">
+        <div class="row">
+            <div class="mx-auto p-5 col-xs-5 col-sm-4 col-md-3 d-flex">
+                <a href="http://www.ardennes.cci.fr/" class="mx-auto"><img src="{{asset('build/img/conseil.png')}}"
+                        class="img-fluid" alt="conseil departementalx"></a>
+            </div>
+
+            <div class="mx-auto p-5 col-xs-5 col-sm-4 col-md-3  d-flex align-items-center">
+                <a href="https://www.cd08.fr/" class="mx-auto"><img src="{{asset('build/img/cci.jpg')}}" class="img-fluid"
+                        alt="cci"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-flui container_footer_links p-4">
+        <ul class="footer_links d-flex flex-column flex-md-row justify-content-md-center">
+            <li class="my-3 my-md-1 mx-3 mx-lg-5">
+                <a href="{{path('edito')}}">Edito</a>
+            </li>
+
+            <li class="my-3 my-md-1 mx-3 mx-lg-5">
+                <a href="{{path('les_ardennes')}}">Et pourquoi pas les Ardennes ?</a>
+            </li>
+
+            <li class="my-3 my-md-1 mx-3 mx-lg-5">
+                <a href="#">L'industrie Ardennaise</a>
+            </li>
+
+            <li class="my-3 my-md-1 mx-3 mx-lg-5">
+                <a href="#">Les partenaires des entreprises industrielles </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container-fluid bg-primary p-1">
+        <p class="text-center text-white pt-2">&copy; Copyright <a href="" class="copyright_link">Simplon
+                Charleville-Mézières</a></p>
+    </div>
+    {% endblock %}
+
+    {% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script>
+        $(window).bind('scroll', function () {
+            if ($(window).scrollTop() > 240) {
+                $('#navbar').addClass('sticky');
+            } else {
+                $('#navbar').removeClass('sticky');
+            }
+        });
+    </script>
+    {% endblock %}
+    {% endblock %}
+
+</body>
+
+</html>

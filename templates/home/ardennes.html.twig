@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block title %}Et pourquoi pas les Ardennes ? - SFIA{% endblock %}
+{% block meta %}Et pourquoi pas les Ardennes ?{% endblock %}
+
+{% block main %}
+
+<div class="container mt-5">
+    <h1 class="p-3 pl-4">Et pourquoi pas les Ardennes ?</h1>
+    <h4 class="mt-5 font-weight-bold text-primary text-center text-md-left">Une situation géographique privilégiée au coeur de
+        l'Europe industrielle</h4>
+
+    <div class="mt-5 d-flex justify-content-center pt-2 pt-md-5">
+        <img src="{{asset('build/img/01situation-geo.jpg')}}" alt="situation geographique" class="img-fluid">
+    </div>
+
+    <h4 class="mt-5 font-weight-bold text-primary">Les Ardennes en chiffres</h4>
+
+    <div class="row mt-5">
+        <div class="col-12 col-md-6 d-flex flex-column justify-content-center mt-3">
+            <p class="mt-md-3 text-center font-weight-bold">Une industrie forte</p>
+            <img src="{{asset('build/img/poids_emploi.jpg')}}" alt="situation geographique" class="img-fluid mt-3">
+            <p class="mt-3">Source : INSEE Janvier 2014</p>
+        </div>
+        <div class="col-12 col-md-6 d-flex flex-column justify-content-center mt-3">
+            <p class="mt-3 text-center font-weight-bold">Une balance commerciale largement excédentaire...</p>
+            <img src="{{asset('build/img/Image3.jpg')}}" alt="balance commerciale" class="img-fluid mt-3 flex-fill">
+            <p class="mt-3">Source : lekiosque.finances.gouv.fr - 2013</p>
+        </div>
+        <div class="col-12 col-md-6 d-flex flex-column justify-content-center mt-md-5 mt-3">
+            <p class="mt-3 text-center font-weight-bold">... la démonstration d’une réelle compétitivité.</p>
+            <img src="{{asset('build/img/Image4.jpg')}}" alt="situation geographique" class="img-fluid mt-3 flex-fill">
+            <p class="mt-3">Source : lekiosque.finances.gouv.fr - 2013</p>
+        </div>
+    </div>
+
+        <h4 class="mt-5 font-weight-bold text-primary">Les Ardennes : le département avec vue sur l’avenir grâce à un fort potentiel technologique</h4>
+
+        <p class="mt-4">Grâce notamment à une main-d’œuvre qualifiée et expérimentée qui perpétue un savoir-faire recherché, les Ardennes sont, depuis toujours un département à forte tradition industrielle. Très tôt, des investissements massifs ont permis de moderniser la production, d’augmenter la valeur ajoutée et de faire des Ardennes un département pionnier dans l’innovation technologique.</p>
+        <p>Le maintien sur le territoire ardennais d’une industrie importante, dotée d’acteurs au meilleur niveau mondial, ne doit rien au hasard. Il est le fruit d’un environnement, construit dans la durée, particulièrement favorable au développement d’une industrie à la pointe du progrès. La technologie est au cœur de la compétitivité industrielle ardennaise : impression 3D, robotique, domotique, monde connecté… Les industriels ardennais misent plus que jamais sur l’innovation.</p>
+        <p>Dans un monde en mouvance permanente, les projets industriels se multiplient, la logique de réduction des coûts n’étant plus, à l’heure actuelle le moteur de croissance. Les leviers de compétitivité ont changé : les entreprises ardennaises ont besoin d’accéder à des outils d’innovation, depuis la recherche fondamentale jusqu’à l’accompagnement financier de leur croissance. Les acteurs du territoire se mobilisent et s’organisent pour créer un environnement favorable à une industrie ardennaise hautement performante : mise en réseau, pôles industriels, ingénierie collaborative, formations de haut niveau, laboratoires de recherche … un pas fondamental pour les usines de demain.</p>
+        <p>Parmi les éléments clés qui constituent cet environnement si propice au développement industriel, la formation professionnelle figure au premier plan. Les industriels ardennais disposent d’une offre de formation de proximité particulièrement complète et adaptée, dont peuvent bénéficier leurs collaborateurs de tout niveau.</p>
+        <p>Un autre élément important est la proximité entre le monde industriel et le monde de la recherche. L’IFTS* est un établissement de l’Université de Reims Champagne-Ardenne (URCA) qui héberge deux laboratoires : le LISM (Laboratoire d’Ingénierie et Sciences des Matériaux) et le CRESTIC (Centre de Recherche en STIC) qui entretiennent des collaborations étroites avec les industriels ardennais, et constituent pour eux un précieux vivier de ressourcement scientifique et technologique. </p>
+        <p>Le CRITT-MDTS* (Matériaux Dépôts et Traitements de Surface), Centre de Ressources Technologiques (CRT) labellisé par le ministère de la recherche et l’enseignement supérieur est le plus important dans sa spécialité. Fort d’une cinquantaine d’ingénieurs et de techniciens au service de l’industrie, il permet aux industriels ardennais de disposer d’un ensemble de moyens exceptionnels, leur permettant ainsi de répondre efficacement et rapidement à de nombreuses problématiques, en offrant des prestations allant du simple contrôle au programme de R&D, et aux expertises ou essais spécifiques. Le CRITT-MDTS organise aussi très régulièrement des rencontres techniques et scientifiques qui constituent des occasions de ressourcement pour les industriels ardennais.</p>
+        <p>Allié au pôle de compétitivité MATERALIA*, à la PFT Génie Industriel - Mise en œuvre des matériaux*, et à bien d’autres acteurs, cet environnement efficace constitue un réseau dynamique qui sécurise le présent et prépare l’avenir, positionnant une industrie ardennaise compétitive dans tous les secteurs de pointes : spatial, aéronautique, automobile, machine-outil, ferroviaire, nucléaire… autant de domaines dans lesquels elle ne pourrait pas réussir sans cette exigence de rigueur, de maitrise et de progrès permanent qui la caractérise.</p>
+        <p>* voir descriptif détaillé dans la rubrique « les Partenaires des Entreprises industrielles »    </p>
+</div>
+
+{% endblock %}

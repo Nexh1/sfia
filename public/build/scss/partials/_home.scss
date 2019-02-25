@@ -1,0 +1,47 @@
+#home {
+    .home_header {
+        background: center / cover  url('../img/industrial.jpg');
+        height: 90vh !important;   
+    }
+    
+    .filter_home_header {
+        height: 90vh !important;   
+        background-color: rgba(0, 0, 0, 0.8);
+    
+        h1 {
+            position: absolute !important;
+            top: 40% !important;
+            line-height: 4.5rem;
+            font-size: 2.5rem;
+            color: rgb(216, 216, 216) !important;
+            text-shadow: 2px 2px 4px #1C6EA4;
+        }
+    
+        .sub_h1 {
+            font-size: 1.5rem;
+        }
+        .button_header {
+            position: absolute;
+            bottom: 33%;
+            left: 45.7%;
+            text-decoration: none;
+        }
+    
+        .call_to_action_header {
+            position: absolute;
+            left: 46%;
+            bottom: 5%;
+            background: transparent;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    }
+
+    .ptop {
+        font-size: 1.2rem;
+    }
+
+}
+
+
+

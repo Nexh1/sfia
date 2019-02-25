@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block title %}Accès non autorisé - SFIA{% endblock %}
+{% block meta %}Accès non autorisé{% endblock %}
+{% block main %}
+<div class="container mt-5">
+<h1 class="text-center text-primary">Vous n'avez pas la permission d'accèder à cette page</h1>
+
+<p class="mt-5 text-center">
+    La page que vous avez demandée requiert une autorisation <br class="mt-5"> <a href="{{ path('security_login') }}">veuillez vous connecter</a> ou <a href="{{ path('home') }}">retourner à la page d'accueil</a>.
+</p>
+</div>
+{% endblock %}

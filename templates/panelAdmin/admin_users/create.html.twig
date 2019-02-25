@@ -1,0 +1,80 @@
+{% extends 'panelAdmin/home.html.twig' %}
+
+{% block admin_main %}
+
+<h1 class='text-center text-primary border-bottom border-primary pb-4 col-md-8 mx-auto'>Création d'un utilisateur</h1>
+
+<div class="row mt-5">
+    <div class="col-10 mx-auto">
+        {{ form_start(form)}}
+        {{ form_errors(form) }}
+        <div class="form-group row">
+            <div class="col-md-6">
+                {{ form_row(form.username, {
+                'label' : "Nom d'utilisateur",
+                'attr' :{
+                'placeholder': "Nom d'utilisateur ...",
+                }}) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.email, {
+                'label' : "Email",
+                'attr' :{
+                'placeholder': "Email ...",
+                }}) }}
+            </div>
+        </div>
+
+        {% if is_granted('ROLE_ADMIN') %}
+        <div class="form-group row">
+            <div class="col-md-6">
+                {{ form_row(form.roles, {
+                'label' : "Niveau de permission",
+                'attr' :{
+                'placeholder': "Mot de passe ...",
+                }}) }}
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="form-group">
+            <div class="form-check">
+                <input type="checkbox" id="userEntreCheck" checked=false>
+                <label class="form-check-label" for="userEntreCheck">L'utilisateur est lié a une entreprise</label>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6">
+                {{ form_row(form.entreprise, {
+                'label' : "Entreprise",
+                'attr' :{
+                'placeholder': "Entreprise ..."
+                }}) }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6">
+                {{ form_row(form.submit, {
+                'label' : "Ajouter l'utilisateur ",
+                'attr' :{
+                'class' : 'btn btn-success'
+                }}) }}
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+{{parent()}}
+<script>
+    $(document).ready(function () {
+        $('#userEntreCheck').on('click', function () {
+            $('#users_create_entreprise').closest(".form-group").toggle(this.checked);
+        }).trigger('click');
+    });
+</script>
+{% endblock %}

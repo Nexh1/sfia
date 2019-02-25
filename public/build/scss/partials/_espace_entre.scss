@@ -1,0 +1,18 @@
+@import '_var.scss';
+
+#espace_entreprises {
+    h1 {
+        background-image: url('../img/h2.png');
+        color: white;
+        font-size: 2rem;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .btn_con {
+        text-decoration: none;
+    }
+    
+    .contact {
+        line-height: 0.2rem;
+    }
+}

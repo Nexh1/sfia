@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block title %}Erreur - SFIA{% endblock %}
+{% block meta %}Une erreur s'est produite{% endblock %}
+{% block main %}
+<div class="container mt-5">
+<h1 class="text-center text-primary">Oups ! une erreur est survenue !</h1>
+
+<p class="mt-5 text-center">
+    Une erreur s'est produite au chargement de la page, vous pouvez rafraichir la page ou <a href="{{ path('home') }}">retourner à la page d'accueil</a>.
+</p>
+</div>
+{% endblock %}

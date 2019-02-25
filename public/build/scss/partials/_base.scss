@@ -1,0 +1,78 @@
+@import '_var.scss';
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans|Roboto');
+// font-family: 'Roboto', sans-serif;
+// font-family: 'Noto Sans', sans-serif;
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Noto Sans', serif;
+    font-size: 1rem;
+    background-color: $grey;
+}
+
+h1 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+    background-image: url('../img/h2.png');
+    color: white;
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+h3 {
+    font-size: 1rem;
+}
+
+.btn {
+    text-decoration: none !important;
+}
+
+// HEADER
+.navbar {
+    min-height: 10vh !important;   
+}
+
+.sticky, .mobile_button {
+    background-color: rgba(14, 44, 104, 0.7) !important;
+}
+
+.nav-item {
+    .nav-link {
+        text-decoration: none !important;
+    
+        &:hover {
+            text-decoration: underline !important;
+        }
+    }
+}
+
+// FOOTER
+.container_footer_logo {
+    margin-top: 8% !important;
+    background-color: #fff !important;
+}
+
+.container_footer_links {
+    background-color: $grey;
+    .footer_links {
+        li {
+            list-style-type: none;
+        }
+    }
+}
+
+.copyright_link {
+    color: #fff;
+}
+
+.article_image {
+    height : 200px;
+    width: auto;
+}

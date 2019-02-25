@@ -1,0 +1,15 @@
+<div class="d-flex justify-content-center mt-5">
+    <ul class="pagination mt-5">
+        <li class="page-item {% if page == 1 %} disabled {% endif %}">
+            <a href="{{ path(route, {'page': page - 1, 'search': app.request.get('search') }) }}" class="page-link">&laquo;</a>
+        </li>
+        {% for i in 1..pages[0] %}
+        <li class="page-item {% if page == i %} active {% endif %}">
+            <a href="{{ path(route, {'page': i, 'search': app.request.get('search') }) }}" class="page-link">{{i}}</a>
+        </li>
+        {% endfor %}
+        <li class="page-item {% if page == pages[0]  %} disabled {% endif %}">
+            <a href="{{ path(route, {'page': page + 1 , 'search': app.request.get('search')}) }}" class="page-link">&raquo;</a>
+        </li>
+    </ul>   
+</div>

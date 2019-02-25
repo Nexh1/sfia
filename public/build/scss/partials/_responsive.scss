@@ -1,0 +1,41 @@
+@media screen and (max-width: 997px) {
+    #home {
+        .button_header {
+            left: 43% !important;     
+        }
+
+        .call_to_action_header {
+            left: 45% !important;
+        }
+    }
+}
+// Bootstrap MD
+@media screen and (max-width: 720px) {
+    .sidebar_admin {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 676px) {
+    #home {
+        .filter_home_header { 
+            h1 {
+                top: 25% !important;
+                font-size: 2rem !important;
+                line-height: 3.5rem;
+            }
+            .sub_h1 {
+                font-size: 1.3rem !important;
+            }
+            .button_header {
+                left: 40% !important; 
+                bottom: 30%;    
+            }
+    
+            .call_to_action_header {
+                left: 42% !important;
+                bottom: 10%;
+            }
+        }
+    }
+}

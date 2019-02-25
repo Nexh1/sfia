@@ -1,0 +1,389 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+{{ parent() }}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+
+{% block main %}
+<h1 class="text-center mt-5 pb-5">Modifier votre fiche entreprise</h1>
+
+<div class="row mt-5">
+    <div class="col-10 mx-auto">
+        {{ form_start(form)}}
+        {{ form_errors(form) }}
+        <div class="form-group row">
+            <div class="col-md-6 d-flex justify-content-between">
+                {{ form_row(form.export) }}
+                {{ form_row(form.qualiteAgrement) }}
+                {{ form_row(form.icpe) }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6">
+                {{ form_row(form.raisonSociale, {
+                'label' : "Raison Sociale",
+                'attr' :{
+                'placeholder': "Raison Sociale ...",
+                'readonly' : true
+                }}) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.adresse, {
+                'label' : "Adresse",
+                'attr' :{
+                'placeholder': "Adresse ...",
+                }}) }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6">
+                {{ form_row(form.codePostal, {
+                'label' : "Code Postal",
+                'attr' :{
+                'placeholder': "Code Postal (chiffres) ...",
+                }}) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.ville, {
+                'label' : "Ville",
+                'attr' :{
+                'placeholder': "Ville ...",
+                }}) }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6">
+                {{ form_row(form.telephone, {
+                'label' : "N° de téléphone",
+                'attr' :{
+                'placeholder': "N° de téléphone (chiffres) ...",
+                }}) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.fax, {
+                'required': false,
+                'label' : "Fax",
+                'attr' :{
+                'placeholder': "Fax (chiffres) ...",
+                }}) }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6">
+                {{ form_row(form.siteWeb, {
+                'required': false,
+                'label' : "Site web",
+                'attr' :{
+                'placeholder': "Site web ...",
+                }}) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.email, {
+                'label' : "Email",
+                'attr' :{
+                'placeholder': "Email ...",
+                }}) }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6">
+                {{ form_row(form.siret, {
+                'required': false,
+                'label' : "Siret",
+                'attr' :{
+                'placeholder': "Siret (chiffres) ...",
+                }}) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.codeNaf, {
+                'label' : "Code naf",
+                'attr' :{
+                'placeholder': "Code naf ...",
+                }}) }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6">
+                {{ form_row(form.formeJuridique, {
+                'label' : "Forme juridique",
+                'attr' :{
+                'placeholder': "Forme juridique ...",
+                }}) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.effectif, {
+                'label' : "Effectif",
+                'attr' :{
+                'placeholder': "Effectif (chiffres) ...",
+                }}) }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6">
+                {{ form_row(form.surfaceCouverte, {
+                'required': false,
+                'label' : "Surface couverte",
+                'attr' :{
+                'placeholder': "Surface couverte (chiffres) ...",
+                }}) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.chiffreAffaire, {
+                'required': false,
+                'label' : "Chiffre d'affaire",
+                'attr' :{
+                'placeholder': "Chiffre d'affaire ...",
+                }}) }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6">
+                {{ form_row(form.manutention, {
+                'required': false,
+                'label' : "Manutention",
+                'attr' :{
+                'placeholder': "Manutention ...",
+                }}) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.capital, {
+                'required': false,
+                'label' : "Capital",
+                'attr' :{
+                'placeholder': "Capital (chiffres) ...",
+                }}) }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6">
+                {{ form_row(form.nomDirigeant, {
+                'label' : "Nom du dirigeant",
+                'attr' :{
+                'placeholder': "Nom du dirigeant ...",
+                }}) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.emailDirigeant, {
+                'label' : "Email du dirigeant",
+                'attr' :{
+                'placeholder': "Email du dirigeant ...",
+                }}) }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6">
+                {{ form_row(form.nomResCom, {
+                'required': false,
+                'label' : "Nom du responsable commercial",
+                'attr' :{
+                'placeholder': "Nom du responsable commercial...",
+                }}) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.emailResCom, {
+                'required': false,
+                'label' : "Email du responsable commercial",
+                'attr' :{
+                'placeholder': "Email du responsable commercial...",
+                }}) }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6">
+                {{ form_row(form.nomResAchat, {
+                'required': false,
+                'label' : "Nom du responsable des achats",
+                'attr' :{
+                'placeholder': "Nom du responsable des achats...",
+                }}) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.emailResAchat, {
+                'required': false,
+                'label' : "Email du responsable des achats",
+                'attr' :{
+                'placeholder': "Email du responsable des achats...",
+                }}) }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6">
+                {{ form_row(form.exportTotal, {
+                'required': false,
+                'label' : "Export total",
+                'attr' :{
+                'placeholder': "Export total (chiffres)...",
+                }}) }}
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6">
+                {{ form_row(form.referencesClients, {
+                'required': false,
+                'label' : "Références clients",
+                'attr' :{
+                'placeholder': "Références ...",
+                'rows': "5"
+                }}) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.environnement, {
+                'required': false,
+                'label' : "Environnement",
+                'attr' :{
+                'placeholder': "Environnement...",
+                }}) }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6">
+                {{ form_row(form.pointFort, {
+                'required': false,
+                'label' : "Points forts",
+                'attr' : {
+                'placeholder': "Points forts ...",
+                'rows': "5"
+                }}) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.equipements, {
+                'required': false,
+                'label' : "Equipements",
+                'attr' :{
+                'placeholder': "Equipements ...",
+                'rows': "5"
+                }}) }}
+
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6">
+                {{ form_row(form.savoirFaire, {
+                'required': false,
+                'label' : "Savoirs faire",
+                'attr' : {
+                'placeholder': "Savoirs faire ...",
+                'rows': "5"
+                }}) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.qualite, {
+                'required': false,
+                'label' : "Qualités",
+                'attr' : {
+                'placeholder': "Qualités ...",
+                'rows': "5"
+                }}) }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6">
+                {{ form_row(form.savoirFaireSearch, {
+                'required': false,
+                'label' : "Savoirs faire (mots-clés, veuillez séparer chaque savoir-faire par une virgule)",
+                'attr' : {
+                'placeholder': "Savoirs faire ...",
+                'rows': "5"
+                }}) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.secteursActivite, {
+                'required': false,
+                'label' : "Secteurs d'activités de destination",
+                'attr' : {
+                'placeholder': "Qualités ...",
+                'rows': "5"
+                }}) }}
+            </div>
+        </div>
+
+        {# <div class="form-group row">
+            <div class="col-md-6">
+                <label for="entreprises_create_savoirFaire">Séléctionner ou ajouter un savoir faire (uniquement pour la recherche, n'est pas affiché sur la fiche entreprise)</label>
+                <select class="form-control" id="savoirFaire_select" name="savoirs[]" multiple="multiple">
+                    {% for currentSavoir in currentSavoirs %}
+                    <option value="{{currentSavoir}}" selected="selected">{{currentSavoir}}</option>
+                    {% endfor %}
+                    {% for savoir in savoirsSearch %}
+                    <option value="{{savoir.nomFr}}">{{savoir.nomFr}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="entreprises_create_secteurActivite">Séléctionner ou ajouter un secteur d'activité (uniquement pour la recherche, n'est pas affiché sur la fiche entreprise)</label>
+                <select class="form-control" id="entreprises_create_secteurActivite" name="secteurs[]" multiple="multiple">
+                    {% for currentSecteur in currentSecteurs %}
+                    <option value="{{currentSecteur}}" selected="selected">{{currentSecteur}}</option>
+                    {% endfor %}
+                    {% for secteur in secteurs %}
+                    <option value="{{secteur.nom}}">{{secteur.nom}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div> #}
+
+        <div class="form-group row">
+            <div class="col-md-6">
+                {{ form_rest(form) }}
+                <button type="submit" class="btn btn-success mr-5 mt-5">Enregistrer les modifications</button>
+                {{ form_end(form) }}
+                <a href="{{ path('espace_entreprises') }}" class="btn btn-danger mt-5">Annuler</a>
+            </div>
+            <div class="col-md-6">
+
+            </div>
+        </div>
+        {{ form_rest(form) }}
+
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ parent() }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#savoirFaire_select').select2({
+            tags: true
+        });
+        $('#savoirFaire_select').children().each(function () {
+            $(this).attr('value', $(this).text());
+        })
+        $('#entreprises_create_secteurActivite').select2({
+            tags: true
+        });
+        $('#entreprises_create_secteurActivite').children().each(function () {
+            $(this).attr('value', $(this).text());
+        });
+
+        $('#savoirFaire_select').on('select2:select', function (e) {
+            var data = e.params.data.text;
+            $('#entreprises_create_savoirFaireSearch').append(", "+data);
+        });  
+
+        $('#entreprises_create_secteurActivite').on('select2:select', function (e) {
+            var data = e.params.data.text;
+            $('#entreprises_create_secteursActivite').append(", "+data);
+        });           
+    });
+</script>
+{% endblock %}

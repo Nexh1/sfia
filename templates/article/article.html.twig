@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+<div class="container mt-5">
+    <h1 class="mt-5 text-center p-2 pl-3">{{article.title}}</h1>
+    <div class="d-flex justify-content-center">
+        <img src="{{ asset('uploads/article/' ~ article.image) }}" class="img-fluid article_image mx-auto mt-5" alt="image de l'article">
+    </div>
+    <div class="row mt-5">
+    {{article.content | raw}}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{entre.raisonSociale}} - SFIA{% endblock %}
+{% block meta %}Fiche de l'entreprise {{entre.raisonSociale}}{% endblock %}
+
+{% block main %}
+<div class="container mt-5">
+
+    <h1 class="p-2 pl-3">{{entre.raisonSociale}}</h1>
+
+    <div class="row mt-5">
+        <div class="col-12 col-md-4 ml-3 mt-3">
+            <p class=""><span class="bold_fiche">Adresse : </span>{{entre.adresse}}</p>
+            <p class=""><span class="bold_fiche">Téléphone : </span>{{entre.telephone}}</p>
+            <p class=""><span class="bold_fiche">Fax : </span>{{entre.fax}}</p>
+            
+        </div>
+        
+        <div class="col-12 col-md-4 ml-3 mt-3">
+            <p><span class="bold_fiche">Site web : </span><a href="http://{{entre.siteWeb}}" >{{entre.siteWeb}}</a></p>
+            <p><span class="bold_fiche">Email :</span>{{entre.email}}</p>
+        </div>      
+    </div>
+
+    <h2 class="mt-5 p-2 pl-3 mb-0">Carte d'indentité</h2>
+
+    <div class="row blue_bg rounded m-0 m-0">
+        
+        <div class="col-12 col-md-5 ml-3 mt-3">
+            <p><span class="bold_fiche">Forme juridique : </span>{{entre.formeJuridique}}</p>
+            <p><span class="bold_fiche">Code NAF : </span>{{entre.codeNaf}}</p><br>
+            <p><span class="bold_fiche">Chiffre d'affaire : </span>{{entre.chiffreAffaire}}</p>
+        </div>
+
+        <div class="col-12 col-md-5 ml-3 mt-3">
+            <p><span class="bold_fiche">Capital : </span>{{entre.capital}}</p>
+            <p><span class="bold_fiche">Effectif : </span>{{entre.effectif}}</p><br>
+            <p><span class="bold_fiche">Surface couverte : </span>{{entre.surfaceCouverte}}</p>
+            <p><span class="bold_fiche">Export : </span>{{entre.exportTotal}}%</p>
+        </div>
+
+        <div class="col-12">
+            <h5 class="col-2 p-1 pl-3 bg-primary text-white">Contact</h5>
+        </div>
+
+        <div class="col-12 col-md-6 ml-3 mt-3">
+            <p><span class="bold_fiche">Dirigeant : </span>{{entre.nomDirigeant}} <br> email : <a href="mailto:{{entre.emailDirigeant}}">{{entre.emailDirigeant}}</a></p>
+            <p><span class="bold_fiche">Responsable commercial : </span>{{entre.nomResCom}} <br> email : <a href="mailto:{{entre.emailResCom}}">{{entre.emailResCom}}</a></p>
+            <p><span class="bold_fiche">Responsable des achats : </span>{{entre.nomResAchat}} <br> email : <a href="mailto:{{entre.emailResAchat}}">{{entre.emailResAchat}}</a></p>
+        </div>
+    </div>
+
+    
+    <div class="row">
+        {% if entre.savoirFaire is not empty %}
+        <div class="col-10 col-md-6 mt-5 mx-auto mx-md-0">
+            <h3 class="p-1 pl-3 pink_h3">Savoir-Faire</h3>
+            <p class="pt-3">{{entre.savoirFaire}}</p>
+        </div>
+        {% endif %}
+
+        {% if entre.equipements is not empty %}
+        <div class="col-10 col-md-6 ml- mt-5 mx-auto mx-md-0">
+            <h3 class="p-1 pl-3 pink_h3">Equipement</h3>
+            <p class="pt-3">{{entre.equipements}}</p>
+        </div>
+        {% endif %}
+
+        {% if entre.qualite is not empty %}
+        <div class="col-10 col-md-6 ml- mt-5 mx-auto mx-md-0">
+            <h3 class="p-1 pl-3 orange_h3">Qualité</h3>
+            <p class="pt-3">{{entre.qualite}}</p>
+        </div>
+        {% endif %}
+
+        {% if entre.manutention is not empty %}
+        <div class="col-10 col-md-6 mt-5 mx-auto mx-md-0">
+            <h3 class="p-1 pl-3 grey_h3">Manutention</h3>
+            <p class="pt-3">{{entre.manutention}}</p>
+        </div>
+        {% endif %}
+
+        {% if entre.secteursActivite is not empty %}
+        <div class="col-10 col-md-6 mt-5 mx-auto mx-md-0">
+            <h3 class="p-1 pl-3 grey_h3">Secteur d'activité de destination</h3>
+            <p class="pt-3">{{entre.secteursActivite}}</p>
+        </div>
+        {% endif %}
+
+        {% if entre.referencesClients is not empty %}
+        <div class="col-10 col-md-6 mt-5 mx-auto mx-md-0">
+            <h3 class="p-1 pl-3 grey_h3">Références clients</h3>
+            <p class="pt-3">{{entre.referencesClients}}</p>
+        </div>
+        {% endif %}
+
+        {% if entre.pointFort is not empty %}
+        <div class="col-10 col-md-6 mt-5 mx-auto mx-md-0">
+            <h3 class="p-1 pl-3 grey_h3">Points forts</h3>
+            <p class="pt-3">{{entre.pointFort}}</p>
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+
+
+{% endblock %}

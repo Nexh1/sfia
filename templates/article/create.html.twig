@@ -1,0 +1,62 @@
+{% extends 'panelAdmin/home.html.twig' %}
+
+{% block admin_main %}
+<h1 class='text-center text-primary border-bottom border-primary pb-4 col-md-8 mx-auto'>Création d'un nouvel article</h1>
+
+<div class="row mt-5">
+    <div class="col-12 col-md-10 mx-auto">
+        {{ form_start(form)}}
+        {{ form_errors(form) }}
+        {% if editMode == true %}
+        <div class="col-12 col-md-6 p-0 mx-auto d-flex justify-content-center">
+            <img src="{{ asset('uploads/article/' ~ article.image.filename) }}" class="img-fluid article_image" alt="image de l'article"
+                style="height: 300px; width : auto;">
+        </div>
+        {% endif %}
+        <div class="col-12 col-md-6 pl-0 mt-5">
+            {{ form_row(form.image, {
+            'label' : "Image de l'article",
+            'attr' : {
+            'placeholder' : "Image de l'article"
+            }
+
+            }) }}
+        </div>
+        {{ form_row(form.title, {
+        'label' : "Titre de l'article",
+        'attr' : {
+        'class' : 'col-12 col-md-6',
+        'placeholder' : "Titre de l'article"
+        }
+
+        }) }}
+        {{ form_row(form.content | raw, {
+        'label' : "Contenu de l'article",
+        'attr' : {
+        'class' : 'col-10 ckeditor',
+        'placeholder' : "Contenu de l'article",
+        'rows' : '8'
+        }
+        }) }}
+
+        {{ form_row(form.submit, {
+        'label' : 'Enregistrer',
+        'attr' : {
+        'class' : 'btn btn-success mt-3'
+        }
+        }) }}
+        {{ form_end(form)}}
+
+    </div>
+</div>
+{% block scripts %}
+{{parent()}}
+<script src="{{ asset('build/js/ckeditor/ckeditor.js') }}" type="text/javascript"></script>
+<script src="{{ asset('build/js/ckeditor/adapters/jquery.js') }}" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function() {
+        $('textarea.ckeditor').ckeditor();
+    });
+</script>
+{% endblock %}
+{% endblock %}

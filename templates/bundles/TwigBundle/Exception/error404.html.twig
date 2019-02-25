@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block title %}Page non trouvée - SFIA{% endblock %}
+{% block meta %}Page non trouvée{% endblock %}
+{% block main %}
+<div class="container mt-5">
+<h1 class="text-center text-primary">Page introuvable</h1>
+
+<p class="mt-5 text-center">
+    La page que vous avez demandé est introuvable, veuillez vérifier si l'url que vous avez entré est valide ou <a href="{{ path('home') }}">retourner à la page d'accueil</a>.
+</p>
+</div>
+{% endblock %}

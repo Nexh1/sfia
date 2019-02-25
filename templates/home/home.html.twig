@@ -1,0 +1,131 @@
+{% extends 'base.html.twig' %}
+{% block title %}Savoir faire industriel Ardennais - SFIA{% endblock %}
+{% block meta %}Créé sous forme de répertoire papier dans les années 1980 à l’initiative des 2
+        Chambres de Commerce et d’Industrie du
+        département, le SFIA est devenu, une véritable vitrine interactive de l’industrie
+        ardennaise{% endblock %}
+{% block stylesheets %}
+{{ parent() }}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+{% block main %}
+<div class="container-fluid home_header p-0">
+    <div class="filter_home_header p-0">
+        <h1 class="text-center col-12">Le Savoir Faire Industriel Ardennais : <br><span class="sub_h1">La vitrine
+                interactive de l'industrie ardennaise</span>
+        </h1>
+        <a class="button_header btn btn-secondary btn-sm text-light" href="{{path('bloc_note')}}">En savoir plus</a>
+        <a class=" call_to_action_header btn btn-lg btn-secondary" href="#call_header" id="call_header">Entrer</a>
+    </div>
+</div>
+{% block flash %}
+{{parent()}}
+{% endblock %}
+<div class="row mt-5 mx-0">
+    <p class="col-12 col-md-9 text-center mx-auto ptop">Créé sous forme de répertoire papier dans les années 1980 à l’initiative des 2
+        Chambres de Commerce et d’Industrie du
+        département, le SFIA est devenu, une véritable vitrine interactive de l’industrie
+        ardennaise</p>
+    <p class="col-12 col-md-10 mx-auto font-weight-bold text-center ptop">Le SFIA est une action de la Chambre de Commerce
+        et d’Industrie des Ardennes, cofinancée par le Conseil Départemental des Ardennes</p>
+</div>
+
+<div class="container p-0">
+    <h2 class="col-12 text-white p-2 pl-3 mt-5">Rechercher une entreprise</h2>
+</div>
+
+<div class="container">
+
+    <div class="col-12 mx-auto">
+        <div class="row">
+            <form action="{{path('search_results')}}" class="px-5 pt-2 pb-5 mt-5 col-12 bg-light rounded p-5" method="get">
+                <h4 class="mb-5 border-bottom border-secondary col-10 p-0 pb-3">Recherche libre (saisir un mot-clé)</h4>
+                <div class="form-group d-flex col-12 col-lg-8 p-0 d-flex justify-content-between justify-content-sm-start px-2">
+                    <div class="form-check">
+                        <input type="checkbox" id="export" class="form-check-input" name="export">
+                        <label for="export">Export</label>
+                    </div>
+                    <div class="form-check ml-3">
+                        <input type="checkbox" id="qualite" class="form-check-input" name="qualite">
+                        <label for="qualite">Qualité / Agrément</label>
+                    </div>
+                    <div class="form-check ml-3">
+                        <input type="checkbox" id="icpe" class="form-check-input" name="icpe">
+                        <label for="icpe">ICPE</label>
+                    </div>
+                </div>
+
+                <div class="form-group col-12 col-lg-8 p-0 mt-5 mt-sm-0 d-md-flex">
+                    <label for="search" class="d-none">Recherche libre</label>
+                    <input type="search" class="form-control col-12 col-sm-10 col-md-6" id="search" name='search'
+                        placeholder="Recherche ..." required>
+                    <button type="submit" class="btn btn-primary ml-md-5 mt-5 mt-md-0">Rechercher</button>
+                </div>
+            </form>     
+        </div>
+
+        <div class="row">
+            <form action="{{path('fiche_entreprise')}}" class="px-5 pt-2 pb-5 col-12 bg-light rounded p-5 " method="get">
+                <h4 class="mb-5 border-bottom border-secondary col-10 p-0 pb-3">Recherche par entreprise</h4>
+                <div class="form-group col-12 col-lg-8 p-0">
+                    <select class="entreSelect form-control col-12 col-sm-10 col-md-6" id="entreSelect" name="entres">
+                        {% for entre in entres %}
+                        <option value="{{entre.id}}">{{entre.raisonSociale}}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn btn-primary ml-md-5 mt-5 mt-md-0">Rechercher</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="row">
+            <form action="{{path('results')}}" class="pl-5 pr-5 pt-2 pb-5 col-12 bg-light rounded p-5" method="get">
+                <h4 class="mb-5 border-bottom border-secondary col-10 p-0 pb-3">Recherche par savoir faire / produit</h4>
+                <div class="form-group col-12 col-lg-8 p-0">
+                    <select class="entreSelect form-control col-12 col-sm-10 col-md-6" id="savoirSelect" name="savoirs">
+                        {% for savoir in savoirs %}
+                        <option value="{{savoir.nomFr}}">{{savoir.nomFr}}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn btn-primary ml-md-5 mt-5 mt-md-0">Rechercher</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="row">
+            <form action="{{path('results')}}" class="pl-5 pr-5 pt-2 pb-5 col-12 bg-light rounded p-5" method="get">
+                <h4 class="mb-5 border-bottom border-secondary col-10 p-0 pb-3">Recherche par Secteur d'activité de
+                    destination</h4>
+                <div class="form-group col-12 col-lg-8 p-0">
+                    <select class="entreSelect form-control col-12 col-sm-10 col-md-6" id="secteurSelect" name="secteurs">
+                        {% for secteur in secteurs %}
+                        <option value="{{secteur.nom}}">{{secteur.nom}}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn btn-primary ml-md-5 mt-5 mt-md-0">Rechercher</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+{{parent()}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#entreSelect').select2();
+        $('#savoirSelect').select2();
+        $('#secteurSelect').select2();
+
+        $('#call_header').on('click', function () {
+            var page = $(this).attr('href');
+            var speed = 750;
+            $('html, body').animate({
+                scrollTop: $(page).offset().top
+            }, speed);
+            return false;
+        });
+    });
+</script>
+{% endblock %}

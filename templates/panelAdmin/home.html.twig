@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Administration - SFIA{% endblock %}</title>
+    <meta name="description" content="{% block meta %}administration {% endblock %}">
+    <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}">
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('build/css/styles.css')}}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
+        crossorigin="anonymous">
+    {% endblock %}
+</head>
+
+<body id="{{ app.request.attributes.get('_route') }}">
+    {% block body %}
+    {% block navbar %}
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary sticky-top" id="navbar">
+        <button class="navbar-toggler position-relative" type="button" data-toggle="collapse" data-target="#mobile_nav"
+            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="nav-item mx-auto mr-md-auto">
+            <a href="{{path('home')}}" class="nav-link text-white p-2 ml-lg-4">Retour sur le site</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="mobile_nav">
+            <ul class="navbar-nav mx-auto pt-4 pt-md-0">
+
+                <li class="nav-item mr-2 mr-lg-4 pd-2 p-md-0 ml-4 ml-md-2 ml-md-0 {% if app.request.attributes.get('_route') == 'admin_home' %}active{% endif %}">
+                    <a class="nav-link" href="{{ path('admin_home') }}">Administration</a>
+                </li>
+
+                <li class="nav-item dropdown mr-2 mr-lg-4 ml-4 ml-md-2 {% if app.request.attributes.get('_route') == 'article_show' %} active {% elseif app.request.attributes.get('_route') == 'article_create' %} active {% endif %}">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Actualités
+                    </a>
+
+                    <div class="dropdown-menu p-0 pb-2 p-md-2 mt-3 bg-primary border-0" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item text-white mb-3 mb-md-0 mt-0" href="{{ path('article_show') }}">Liste
+                            des articles</a>
+                        <a class="dropdown-item text-white mt-0 mt-md-2" href="{{path('article_create')}}">Ajouter un
+                            article</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown mr-2 mr-lg-4 ml-4 ml-md-2 {% if app.request.attributes.get('_route') == 'admin_show_entreprises' %} active {% elseif app.request.attributes.get('_route') == 'admin_create_entreprise' %} active {% endif %}">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Entreprises
+                    </a>
+
+                    <div class="dropdown-menu p-0 pb-2 p-md-2 mt-3 bg-primary border-0" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item text-white mb-3 mb-md-0 mt-0" href="{{ path('admin_show_entreprises') }}">Liste
+                            des entreprises</a>
+                        <a class="dropdown-item text-white mt-0 mt-md-2" href="{{path('admin_create_entreprise')}}">Ajouter
+                            une entreprise</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown mr-2 mr-lg-4 ml-4 ml-md-2 {% if app.request.attributes.get('_route') == 'admin_show_users' %} active {% elseif app.request.attributes.get('_route') == 'admin_create_user' %} active {% endif %}">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Utilisateurs
+                    </a>
+
+                    <div class="dropdown-menu p-0 pb-2 p-md-2 mt-3 bg-primary border-0" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item text-white mb-3 mb-md-0 mt-0" href="{{ path('admin_show_users') }}">Liste
+                            des utilisateurs</a>
+                        <a class="dropdown-item text-white mt-0 mt-md-2" href="{{path('admin_create_user')}}">Ajouter
+                            un utilisateur</a>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="nav-item ml-auto">
+            <a href="{{path('security_logout')}}" class="nav-link text-white p-2 pr-lg-4">Déconnexion</a>
+        </div>
+    </nav>
+
+    {% endblock %}
+
+    <div class="container-fluid pb-5">
+        <div class="row">
+            <nav class="col-md-2 sidebar_admin d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column mt-5">
+                        <li class="nav-item {% if app.request.attributes.get('_route') == 'admin_home' %}bg-primary{% endif %}">
+                            <a class="nav-link {% if app.request.attributes.get('_route') == 'admin_home' %}text-white{% endif %}"
+                                href="{{ path('admin_home') }}">
+                                <span data-feather="home"></span>
+                                Administration
+                            </a>
+                        </li>
+                        <li class="nav-item {% if app.request.attributes.get('_route') == 'article_show' %}bg-primary{% endif %}">
+                            <a class="nav-link {% if app.request.attributes.get('_route') == 'article_show' %}text-white{% endif %}"
+                                href="{{ path('article_show') }}">
+                                <span data-feather="home"></span>
+                                Liste des articles
+                            </a>
+                        </li>
+                        <li class="nav-item {% if app.request.attributes.get('_route') == 'article_create' %}bg-primary{% endif %}">
+                            <a class="nav-link {% if app.request.attributes.get('_route') == 'article_create' %}text-white{% endif %}"
+                                href="{{ path('article_create') }}">
+                                <span data-feather="shopping-cart"></span>
+                                Ajouter un article
+                            </a>
+                        </li>
+                        <li class="nav-item {% if app.request.attributes.get('_route') == 'admin_show_entreprises' %}bg-primary{% endif %}">
+                            <a class="nav-link {% if app.request.attributes.get('_route') == 'admin_show_entreprises' %}text-white{% endif %}"
+                                href="{{ path('admin_show_entreprises') }}">
+                                <span data-feather="shopping-cart"></span>
+                                Liste des entreprises
+                            </a>
+                        </li>
+                        <li class="nav-item {% if app.request.attributes.get('_route') == 'admin_create_entreprise' %}bg-primary{% endif %}">
+                            <a class="nav-link {% if app.request.attributes.get('_route') == 'admin_create_entreprise' %}text-white{% endif %}"
+                                href="{{ path('admin_create_entreprise') }}">
+                                <span data-feather="admin_create"></span>
+                                Ajouter une entreprise
+                            </a>
+                        </li>
+                        <li class="nav-item {% if app.request.attributes.get('_route') == 'admin_show_users' %}bg-primary{% endif %}">
+                            <a class="nav-link {% if app.request.attributes.get('_route') == 'admin_show_users' %}text-white{% endif %}"
+                                href="{{ path('admin_show_users') }}">
+                                <span data-feather="bar-chart-2"></span>
+                                Liste des utilisateurs
+                            </a>
+                        </li>
+                        <li class="nav-item {% if app.request.attributes.get('_route') == 'admin_create_user' %}bg-primary{% endif %}">
+                            <a class="nav-link {% if app.request.attributes.get('_route') == 'admin_create_user' %}text-white{% endif %}"
+                                href="{{ path('admin_create_user') }}">
+                                <span data-feather="bar-chart-2"></span>
+                                Ajouter un utilisateur
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <div class="row">
+                    <div class="col-md-8 mx-auto mt-5">
+                        {% for label, messages in app.flashes %}
+                        {% for message in messages %}
+                        <div class="alert alert-{{ label }}">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% block admin_main %}
+
+                {% endblock %}
+            </main>
+        </div>
+    </div>
+
+    {% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script src="{{ asset('build/js/admin_home.js') }}"></script>
+    {% endblock %}
+    {% endblock %}
+</body>
+
+</html>

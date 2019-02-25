@@ -1,0 +1,46 @@
+{% extends 'panelAdmin/home.html.twig' %}
+
+{% block admin_main %}
+<h1 class="text-center text-primary border-bottom border-primary pb-4 col-md-8 mx-auto">Espace administration</h1>
+<h5 class="text-center mt-5">Bienvenue dans l'espace administratif du SFIA</h5>
+<div class="container">
+    <div class="counter">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-4">
+                    <div class="employees">
+                        <p class="counter-count">{{articlesCount}}</p>
+                        <p class="employee-p">Articles</p>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="customer">
+                        <p class="counter-count">{{entresCount}}</p>
+                        <p class="customer-p">Entreprises</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 col-md-5 border border-info rounded p-3 mr-md-4 mt-5">
+            <h4 class="text-center mb-5 border-bottom p-3 font-weight-bold text-primary">Derniers articles ajoutés</h4>
+            {% for article in articles %}
+            <p class="text-center"><a href="{{path('article_edit', {'id':article.id})}}">{{article.title[:30]}}</a></p>
+            {% endfor %}
+            <p class="text-center"><a href="{{path('article_create')}}" class="btn btn-success mt-5">Ecrire un article</a></p>
+        </div>
+        <div class="col-12 col-md-5 border border-info rounded p-3 ml-md-4 mt-5">
+            <h4 class="text-center mb-5 border-bottom p-3 font-weight-bold text-primary">Dernières entreprises ajoutées</h4>
+            {% for entre in entres %}
+            <p class="text-center"><a href="{{path('admin_edit_entreprise', {'id':entre.id})}}">{{entre.raisonSociale[:30]}}</a></p>
+            {% endfor %}
+            <p class="text-center"><a href="{{path('admin_create_entreprise')}}" class="btn btn-success mt-5">Ajouter
+                    une entreprise</a></p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

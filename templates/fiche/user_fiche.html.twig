@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block title %}Espace entreprise - SFIA{% endblock %}
+{% block meta %}Espace entreprise{% endblock %}
+
+{% block main %}
+<div class="row m-0 mt-5 p-0">
+    <div class="container">
+        {% if is_granted('ROLE_USER') %}
+        <h1 class="mt-5 p-3 pl-4">Espace entreprises</h2>
+            {% if entre is defined %}
+            <div class="col-12 mt-5">
+                <h4 class="text-center text-primary font-weight-bold">Bienvenue dans votre espace personnel</h4>
+                <p class="mt-5"><a href="{{path('fiche' , {'id': entre.id}) }}"> Afficher ma fiche entreprise</a></p>
+                <p><a href="{{path('espace_entreprises_edit')}}">Modifier ma fiche entreprise</a></p>
+            </div>
+            {% else %}
+            <div class="col-12 mt-5">
+                <h4 class="text-center text-primary font-weight-bold">Bienvenue dans votre espace personnel</h4>
+                <p class="mt-5">Il semble que vous n'ayez pas d'entreprise associée à votre compte.</p>
+                <p>Pour remédier à cela veuillez contacter l'administrateur du site</p>
+                <p class="text-center"><a href="{{path('contact')}}" class="btn btn-primary mt-5">Contacter
+                        l'administrateur du site</a></p>
+            </div>
+            {% endif %}
+            {% else %}
+            <h1 class="mt-5 p-3 pl-4">Espace entreprises</h2>
+
+                <div class="col-12 mt-5">
+                    <p>Votre entreprise est référencée sur ce site et vous souhaitez apporter une modification à votre
+                        fiche ?</p>
+                    <p>Rien de plus simple, il vous suffit de vous munir :</p>
+                    <ul>
+                        <li>de l’email que nous utilisons pour communiquer avec vous,</li>
+                        <li>du mot de passe que vous nous avons envoyé à l’adresse électronique précédente.</li>
+                    </ul><br>
+                    <p class="text-center"><a href="{{path('security_login')}}" class="btn btn-primary mt-5">Se connecter</a></p>
+                    <p class="mt-5">Votre entreprise industrielle est située dans les Ardennes et n’est pas référencée
+                        sur ce site, <a href="{{path('contact')}}">contactez-nous</a> vite !</p>
+                </div>
+                {% endif %}
+    </div>
+</div>
+{% endblock %}

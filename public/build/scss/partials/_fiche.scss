@@ -1,0 +1,40 @@
+@import '_var.scss';
+
+#fiche, #fiche_entreprise {
+    .bold_fiche {
+        font-weight: bold;
+    }
+
+    .blue_bg {
+        background-color: #C2D0E9;
+    }
+
+    p {
+        line-height: 1.5rem;
+    }
+
+    h1 {
+        background-image: url('../img/h2.png');
+        color: white;
+        font-size: 2rem;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .pink_h3 {
+        background-image: url('../img/h3-violet.png');
+        color: #fff;
+        font-size: 1.2rem;
+    }
+    
+    .orange_h3 {
+        background-image: url('../img/h3-orange.png');
+        color: #fff;
+        font-size: 1.2rem;
+    }
+
+    .grey_h3 {
+        background-image: url('../img/h3-grey.png');
+        color: #fff;
+        font-size: 1.2rem;
+    }
+}

@@ -1,0 +1,104 @@
+{% extends 'panelAdmin/home.html.twig' %}
+{% block stylesheets %}
+{{ parent()}}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css" />
+{% endblock %}
+{% block admin_main %}
+<h1 class="text-center text-primary border-bottom border-primary pb-4 col-md-8 mx-auto">Liste des utilisateurs</h1>
+<div class="row">
+    <div class="table-responsive mt-5 col-12 col-md-11 mx-auto">
+        <table id="users_table" class="table table-hover">
+            <thead class="">
+                <tr>
+                    <th scope="col" class="text-center">Id</th>
+                    <th scope="col" class="text-center">Nom d'utilisateur</th>
+                    <th scope="col" class="text-center">Email</th>
+                    <th scope="col" class="text-center">Date de création</th>
+                    <th scope="col" class="text-center">Mot de passe</th>
+                    <th scope="col" class="text-center">Supprimer</th>
+                    {% if is_granted(['ROLE_ADMIN']) %}
+                    <th scope="col" class="text-center">Niveau de permission</th>
+                    {% endif %}
+                </tr>
+            </thead>
+
+            <tbody>
+                {% if is_granted(['ROLE_ADMIN']) %}
+                {% for user in users %}
+                <tr>
+                    <th scope="row">{{ user.id }}</th>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>Inscrit le {{ user.createdAt | date("d/m/Y") }} à {{ user.createdAt | date("G:i:s") }}</td>
+                    <td><a class="btn btn-primary btn-xs text-center ml-2 ml-md-3" data-title="Nouveau mot de passe" href="{{ path('admin_password_user', {'id':user.id}) }}"><span
+                                class="text-white fas fa-edit mx-auto"></span></a></td>
+                    <td class="text-center"><a class="btn btn-danger btn-xs fas fa-trash ml-2" href="{{ path('admin_delete_user', {'id':user.id}) }}"
+                            data-title="Supprimer"></a></td>
+
+                    {% if is_granted(['ROLE_ADMIN']) %}
+                    <td>
+                        {% for role in user.roles %}
+                        {{ role }}
+                        {% endfor %}
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+
+                {% else %}
+                {% for user in simpleUsers %}
+                <tr>
+                    <th scope="row">{{ user.id }}</th>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>Inscrit le {{ user.createdAt | date("d/m/Y") }} à {{ user.createdAt | date("G:i:s") }}</td>
+                    <td><a class="btn btn-primary btn-xs ml-2 ml-md-3" data-title="Nouveau mot de passe" href="{{ path('admin_password_user', {'id':user.id}) }}"><span
+                                class="text-white fas fa-edit"></span></a></td>
+                    <td><a class="btn btn-danger btn-xs fas fa-trash ml-2 ml-md-3" href="{{ path('admin_delete_user', {'id':user.id}) }}"
+                            data-title="Supprimer"></a></td>
+
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+{{parent()}}
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#users_table').DataTable({
+            "order": [
+                [0, "desc"]
+            ],
+            "bDestroy": true,
+            language: {
+                processing: "Traitement en cours...",
+                search: "Rechercher&nbsp;:",
+                lengthMenu: "Afficher _MENU_ &eacute;l&eacute;ments",
+                info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+                infoEmpty: "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+                infoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                infoPostFix: "",
+                loadingRecords: "Chargement en cours...",
+                zeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                emptyTable: "Aucune donnée disponible dans le tableau",
+                paginate: {
+                    first: "Premier",
+                    previous: "Pr&eacute;c&eacute;dent",
+                    next: "Suivant",
+                    last: "Dernier"
+                },
+                aria: {
+                    sortAscending: ": activer pour trier la colonne par ordre croissant",
+                    sortDescending: ": activer pour trier la colonne par ordre décroissant"
+                }
+            }
+        });
+    });
+</script>
+
+{% endblock %}
